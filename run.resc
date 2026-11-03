@@ -1,0 +1,11 @@
+:name: Project watchdog
+using sysbus
+mach create "project-watchdog"
+machine LoadPlatformDescription @platforms/boards/stm32f4_discovery-kit.repl
+showAnalyzer sysbus.usart2
+macro reset
+"""
+    sysbus LoadELF @E:/embedded/project/sensor-watchdog/build/hi.elf
+"""
+runMacro $reset
+start
